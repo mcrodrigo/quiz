@@ -96,6 +96,14 @@
                 form.inputQuestion4.value,
             ]
 
+            const userCorrectAnswer = (answer, index) => {
+                if (answer === correctAnswer[index]) {
+                    score += 25
+                }
+            }
+
+            userAnswers.forEach(userCorrectAnswer)
+            
             switch (score) {
                 case 0:
                     p.innerText = `Você não acertou nenhuma questão`
@@ -106,14 +114,6 @@
                 default:
                     p.innerText = `Você acertou ${score}% das questões`
             }
-
-            const userCorrectAnswer = (answer, index) => {
-                if (answer === correctAnswer[index]) {
-                    score += 25
-                }
-            }
-
-            userAnswers.forEach(userCorrectAnswer)
 
             form.insertAdjacentElement('afterend', p)
             
