@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Etapa 07 - Aplicação: Quiz Interativo</title>
+</head>
+
+<body>
+    <h1 class="mx-auto text-center bg-primary text-white" style="width: 100%;">
+        QUIZ
+    </h1>
+<h2 class="text-center">O quanto você sabe sobre linguagens de programação?</h2>
+    <form class="container">
+
+        <div class="mb-3">
+            <p>1. Linguagem de programação interpretada</p>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion1" value="A" checked>
+                    Java
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion1" value="B">
+                    JavaScript
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <p>2. Linguagem com notação legível por humanos para o código de máquina </p>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion2" value="A" checked>
+                    C++
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion2" value="B">
+                    Assembly
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <p>3. Linguagem de Marcação de Hipertexto</p>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion3" value="A">
+                    CSS
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion3" value="B" checked>
+                    HTML
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <p>4. Linguagem para desenvolvimento do lado do servidor </p>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion4" value="A">
+                    VisualBasic
+                </label>
+            </div>
+            <div class="form-check">
+                <label class="form-check-label text-secondary">
+                    <input class="form-check-input" type="radio" name="inputQuestion4" value="B" checked>
+                    PHP
+                </label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+    <script>
+        const form = document.querySelector('form')
+        const correctAnswer = ['B', 'B', 'B', 'B']
+        const p = document.createElement('p')
+        p.classList.add('text-center', 'text-success')
+
+        form.addEventListener('submit', event => {
+            event.preventDefault()
+            let score = 0
+
+            const userAnswers = [
+                form.inputQuestion1.value,
+                form.inputQuestion2.value,
+                form.inputQuestion3.value,
+                form.inputQuestion4.value,
+            ]
+
+            switch (score) {
+                case 0:
+                    p.innerText = `Você não acertou nenhuma questão`
+                    break
+                case 100:
+                    p.innerText = 'Você acertou tudo, parabéns!'
+                    break
+                default:
+                    p.innerText = `Você acertou ${score}% das questões`
+            }
+
+            const userCorrectAnswer = (answer, index) => {
+                if (answer === correctAnswer[index]) {
+                    score += 25
+                }
+            }
+
+            userAnswers.forEach(userCorrectAnswer)
+
+            form.insertAdjacentElement('afterend', p)
+            
+        })
+    </script>
+</body>
+
+</html>
